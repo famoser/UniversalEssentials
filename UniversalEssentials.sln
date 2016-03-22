@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversalEssentials", "Univ
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{00327229-5D85-48A7-BED4-E841691D8CE2}"
 	ProjectSection(SolutionItems) = preProject
-		Famoser.UniversalEssentials.1.0.0.nupkg = Famoser.UniversalEssentials.1.0.0.nupkg
+		Famoser.UniversalEssentials.1.1.0.nupkg = Famoser.UniversalEssentials.1.1.0.nupkg
 	EndProjectSection
 EndProject
 Global
