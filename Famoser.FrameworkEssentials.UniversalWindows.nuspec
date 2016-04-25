@@ -13,6 +13,9 @@ Currently, it contains:
 - IStorageService implementation
 - ResolutionHelper</description>
         <releaseNotes>initial release</releaseNotes>
+		<dependencies>
+			<dependency id="Famoser.FrameworkEssentials" />
+		</dependencies>
     </metadata>
     <files>
         <file src="Famoser.FrameworkEssentials.UniversalWindows\bin\Release\Famoser.FrameworkEssentials.UniversalWindows.dll" target="lib\uap10.0\Famoser.FrameworkEssentials.UniversalWindows.dll" />
