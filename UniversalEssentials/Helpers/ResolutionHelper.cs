@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml;
-using Famoser.FrameworkEssentials.Singleton;
+﻿using Windows.UI.Xaml;
 
 namespace UniversalEssentials.Helpers
 {
-    public class ResolutionHelper : SingletonBase<ResolutionHelper>
+    public class ResolutionHelper
     {
-        public double WidthOfDevice
+        public static double WidthOfDevice
         {
             get { return Window.Current.Bounds.Width; }
         }
 
-        public double HeightOfDevice
+        public static double HeightOfDevice
         {
             get { return Window.Current.Bounds.Height; }
         }

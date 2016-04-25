@@ -1,20 +1,20 @@
 ﻿using System;
-using Windows.UI.Xaml.Data;
+using UniversalEssentials.Converters.Base;
 
 namespace UniversalEssentials.Converters.Visibility
 {
-    public class DateTimeToVisibilityConverter : IValueConverter
+    public class DateTimeToVisibilityConverter : ConverterBase
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public override object Convert(object value, Type targetType, object parameter, string language)
         {
             var date = (DateTime)value;
-            if (date == DateTime.MinValue && parameter as string != "invert")
+            if (date == DateTime.MinValue != IsInverted(parameter))
                 return Windows.UI.Xaml.Visibility.Collapsed;
 
             return Windows.UI.Xaml.Visibility.Visible;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        public override object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();
         }

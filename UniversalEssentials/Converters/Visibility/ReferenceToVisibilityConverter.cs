@@ -1,19 +1,19 @@
 ﻿using System;
-using Windows.UI.Xaml.Data;
+using UniversalEssentials.Converters.Base;
 
 namespace UniversalEssentials.Converters.Visibility
 {
-    public class ReferenceToVisibilityConverter : IValueConverter
+    public class ReferenceToVisibilityConverter : ConverterBase
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public override object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value == null && parameter as string != "invert")
-                return Windows.UI.Xaml.Visibility.Collapsed;
-            return Windows.UI.Xaml.Visibility.Visible;
+            if (value != null != IsInverted(parameter))
+                return Windows.UI.Xaml.Visibility.Visible;
+            return Windows.UI.Xaml.Visibility.Collapsed;
 
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        public override object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();
         }
