@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 
-namespace UniversalEssentials.Converters.Base
+namespace Famoser.FrameworkEssentials.UniversalWindows.Converters.Base
 {
     public abstract class ConverterBase : IValueConverter
     {

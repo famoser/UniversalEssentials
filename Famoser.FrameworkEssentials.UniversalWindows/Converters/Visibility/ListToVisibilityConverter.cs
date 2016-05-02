@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using UniversalEssentials.Converters.Base;
+using Famoser.FrameworkEssentials.UniversalWindows.Converters.Base;
 
-namespace UniversalEssentials.Converters.Visibility
+namespace Famoser.FrameworkEssentials.UniversalWindows.Converters.Visibility
 {
     public class ListToVisibilityConverter : ConverterBase
     {

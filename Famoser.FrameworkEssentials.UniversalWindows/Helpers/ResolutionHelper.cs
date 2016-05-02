@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml;
 
-namespace UniversalEssentials.Helpers
+namespace Famoser.FrameworkEssentials.UniversalWindows.Helpers
 {
     public class ResolutionHelper
     {

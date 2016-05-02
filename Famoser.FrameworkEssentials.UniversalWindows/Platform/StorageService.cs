@@ -5,7 +5,7 @@ using Windows.Storage;
 using Famoser.FrameworkEssentials.Logging.Interfaces;
 using Famoser.FrameworkEssentials.Services.Interfaces;
 
-namespace UniversalEssentials.Platform
+namespace Famoser.FrameworkEssentials.UniversalWindows.Platform
 {
     public class StorageService : IStorageService
     {

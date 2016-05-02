@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 
-namespace UniversalEssentials.Converters.Controls
+namespace Famoser.FrameworkEssentials.UniversalWindows.Converters.Controls
 {
     public class RadioConverter : IValueConverter
     {

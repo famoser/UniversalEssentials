@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Famoser.FrameworkEssentials.UniversalWindows", "UniversalEssentials\Famoser.FrameworkEssentials.UniversalWindows.csproj", "{37657D61-B35E-457F-90CD-82FC5652FFD8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Famoser.FrameworkEssentials.UniversalWindows", "Famoser.FrameworkEssentials.UniversalWindows\Famoser.FrameworkEssentials.UniversalWindows.csproj", "{37657D61-B35E-457F-90CD-82FC5652FFD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
