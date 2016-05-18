@@ -108,7 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\Base\ConverterBase.cs" />
-    <Compile Include="Converters\Visibility\BoolToVisbilityConverter.cs" />
+    <Compile Include="Converters\Visibility\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\Visibility\DateTimeToVisibilityConverter.cs" />
     <Compile Include="Converters\Visibility\ListToVisibilityConverter.cs" />
     <Compile Include="Converters\Controls\RadioConverter.cs" />
