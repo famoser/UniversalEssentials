@@ -115,6 +115,7 @@
     <Compile Include="Converters\Visibility\ReferenceToVisibilityConverter.cs" />
     <Compile Include="Converters\Visibility\StringToVisbilityConverter.cs" />
     <Compile Include="Helpers\ResolutionHelper.cs" />
+    <Compile Include="Platform\HistoryNavigationService.cs" />
     <Compile Include="Platform\StorageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\UniversalEssentials.rd.xml" />
