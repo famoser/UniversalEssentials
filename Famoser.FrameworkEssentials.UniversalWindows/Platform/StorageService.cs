@@ -115,32 +115,32 @@ namespace Famoser.FrameworkEssentials.UniversalWindows.Platform
 
         public Task<string> GetCachedTextFileAsync(string fileKey)
         {
-            return Execute(() => ReadRoamingTextFileAsync(fileKey));
+            return Execute(() => ReadLocalTextFileAsync(fileKey));
         }
 
         public Task<bool> SetCachedTextFileAsync(string fileKey, string content)
         {
-            return Execute(() => SaveRoamingTextFileAsync(fileKey, content));
+            return Execute(() => SaveLocalTextFileAsync(fileKey, content));
         }
 
         public Task<byte[]> GetCachedFileAsync(string fileKey)
         {
-            return Execute(() => ReadRoamingFileAsync(fileKey));
+            return Execute(() => ReadLocalFileAsync(fileKey));
         }
 
         public Task<bool> SetCachedFileAsync(string fileKey, byte[] content)
         {
-            return Execute(() => SaveRoamingFileAsync(fileKey, content));
+            return Execute(() => SaveLocalFileAsync(fileKey, content));
         }
 
         public Task<string> GetUserTextFileAsync(string fileKey)
         {
-            return Execute(() => ReadLocalTextFileAsync(fileKey));
+            return Execute(() => ReadRoamingTextFileAsync(fileKey));
         }
 
         public Task<bool> SetUserTextFileAsync(string fileKey, string content)
         {
-            return Execute(() => SaveLocalTextFileAsync(fileKey, content));
+            return Execute(() => SaveRoamingTextFileAsync(fileKey, content));
         }
 
         public Task<byte[]> GetUserFileAsync(string fileKey)
