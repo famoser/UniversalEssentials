@@ -93,10 +93,32 @@ namespace Famoser.FrameworkEssentials.UniversalWindows.Platform
         {
             if (!_pagesByKey.ContainsKey(pageKey))
                 throw new ArgumentException(string.Format("No such page: {0}. Did you forget to call NavigationService.Configure?", pageKey), "pageKey");
-            ((Frame)Window.Current.Content).Navigate(_pagesByKey[pageKey]);
+
+            var frame = (Frame)Window.Current.Content;
             lock (this)
             {
+                frame.Navigate(_pagesByKey[pageKey]);
                 _notifiers.Push(new Tuple<INavigationBackNotifier, object>(navigationBackNotifier, notifyObject));
+                ConfigureBackButton();
+            }
+        }
+
+        public void NavigateToAndForget(string pageKey)
+        {
+            if (!_pagesByKey.ContainsKey(pageKey))
+                throw new ArgumentException(string.Format("No such page: {0}. Did you forget to call NavigationService.Configure?", pageKey), "pageKey");
+
+            var frame = (Frame)Window.Current.Content;
+            lock (this)
+            {
+                frame.Navigate(_pagesByKey[pageKey]);
+
+                //remove last from backstack
+                var backStack = frame.BackStack;
+                var last = backStack.LastOrDefault();
+                if (last != null)
+                    backStack.Remove(last);
+
                 ConfigureBackButton();
             }
         }

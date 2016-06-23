@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Famoser.FrameworkEssentials.UniversalWindows</id>
-        <version>1.1.1</version>
+        <version>1.1.2</version>
         <authors>Florian Moser</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>This packages contains classes which should be in every UWP framework.
@@ -13,9 +13,9 @@ Currently, it contains:
 - IStorageService implementation
 - IHistoryNavigationService implementation
 - ResolutionHelper</description>
-        <releaseNotes>StorageService now saves correctly, sorry</releaseNotes>
+        <releaseNotes>NavigationService implementation changed</releaseNotes>
 		<dependencies>
-			<dependency id="Famoser.FrameworkEssentials" version="2.6.1" />
+			<dependency id="Famoser.FrameworkEssentials" version="2.6.3" />
 		</dependencies>
     </metadata>
     <files>
