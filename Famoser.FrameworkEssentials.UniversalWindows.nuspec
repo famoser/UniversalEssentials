@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Famoser.FrameworkEssentials.UniversalWindows</id>
-        <version>1.1.2</version>
+        <version>1.1.7</version>
         <authors>Florian Moser</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>This packages contains classes which should be in every UWP framework.
@@ -20,5 +20,8 @@ Currently, it contains:
     </metadata>
     <files>
         <file src="Famoser.FrameworkEssentials.UniversalWindows\bin\Release\Famoser.FrameworkEssentials.UniversalWindows.dll" target="lib\uap10.0\Famoser.FrameworkEssentials.UniversalWindows.dll" />
+        <file src="Famoser.FrameworkEssentials.UniversalWindows\bin\Release\Dictionaries\FamoserControlStyles.xaml" target="content\uap10.0\Dictionaries\FamoserControlStyles.xaml" />
+        <file src="Famoser.FrameworkEssentials.UniversalWindows\bin\Release\Dictionaries\FamoserConverters.xaml" target="content\uap10.0\Dictionaries\FamoserConverters.xaml" />
+        <file src="Famoser.FrameworkEssentials.UniversalWindows\bin\Release\Dictionaries\FamoserStyles.xaml" target="content\uap10.0\Dictionaries\FamoserStyles.xaml" />
     </files>
 </package>
