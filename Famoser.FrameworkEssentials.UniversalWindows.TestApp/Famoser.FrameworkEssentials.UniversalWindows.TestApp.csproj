@@ -7,8 +7,8 @@
     <ProjectGuid>{87E94279-99A2-445C-B128-63C9228F8BA2}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestApp</RootNamespace>
-    <AssemblyName>TestApp</AssemblyName>
+    <RootNamespace>Famoser.FrameworkEssentials.UniversalWindows.TestApp</RootNamespace>
+    <AssemblyName>Famoser.FrameworkEssentials.UniversalWindows.TestApp</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>

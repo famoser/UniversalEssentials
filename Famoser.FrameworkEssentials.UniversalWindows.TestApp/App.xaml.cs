@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Famoser.FrameworkEssentials.UniversalWindows.Platform;
 
-namespace TestApp
+namespace Famoser.FrameworkEssentials.UniversalWindows.TestApp
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Famoser.FrameworkEssentials
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{28D26AEA-4374-4732-AA45-02878217DCEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{87E94279-99A2-445C-B128-63C9228F8BA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Famoser.FrameworkEssentials.UniversalWindows.TestApp", "Famoser.FrameworkEssentials.UniversalWindows.TestApp\Famoser.FrameworkEssentials.UniversalWindows.TestApp.csproj", "{87E94279-99A2-445C-B128-63C9228F8BA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
