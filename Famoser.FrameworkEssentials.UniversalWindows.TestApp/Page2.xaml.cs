@@ -12,10 +12,11 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Famoser.FrameworkEssentials.UniversalWindows.TestApp;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace TestApp
+namespace Famoser.FrameworkEssentials.UniversalWindows.TestApp
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.

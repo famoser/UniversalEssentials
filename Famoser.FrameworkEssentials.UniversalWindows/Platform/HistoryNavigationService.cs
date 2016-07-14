@@ -13,7 +13,7 @@ using Famoser.FrameworkEssentials.View.Interfaces;
 
 namespace Famoser.FrameworkEssentials.UniversalWindows.Platform
 {
-    public class HistoryNavigationServices : IHistoryNavigationService
+    public class HistoryNavigationService : IHistoryNavigationService
     {
         private readonly ConcurrentDictionary<string, Type> _pagesByKey = new ConcurrentDictionary<string, Type>();
         private readonly ConcurrentStack<Tuple<INavigationBackNotifier, object>> _notifiers = new ConcurrentStack<Tuple<INavigationBackNotifier, object>>();
@@ -21,8 +21,27 @@ namespace Famoser.FrameworkEssentials.UniversalWindows.Platform
         public string RootPageKey => "-- ROOT--";
         public string UnknownPageKey => "-- UNKNOWN--";
 
-        public HistoryNavigationServices()
+        private void ConfigureBackButton()
         {
+            if (_notifiers.Count == 0)
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                    AppViewBackButtonVisibility.Collapsed;
+            else
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                    AppViewBackButtonVisibility.Visible;
+        }
+
+        private bool _executed;
+        private void ExecuteOnce()
+        {
+            lock (this)
+            {
+                if (_executed)
+                    return;
+
+                _executed = true;
+            }
+
             SystemNavigationManager.GetForCurrentView().BackRequested += (s, ev) =>
             {
                 if (!ev.Handled)
@@ -33,16 +52,6 @@ namespace Famoser.FrameworkEssentials.UniversalWindows.Platform
             };
 
             ConfigureBackButton();
-        }
-
-        private void ConfigureBackButton()
-        {
-            if (_notifiers.Count == 0)
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                    AppViewBackButtonVisibility.Collapsed;
-            else
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                    AppViewBackButtonVisibility.Visible;
         }
 
         /// <summary>
@@ -91,6 +100,8 @@ namespace Famoser.FrameworkEssentials.UniversalWindows.Platform
         /// </summary>
         public virtual void NavigateTo(string pageKey, INavigationBackNotifier navigationBackNotifier = null, object notifyObject = null)
         {
+            ExecuteOnce();
+
             if (!_pagesByKey.ContainsKey(pageKey))
                 throw new ArgumentException(string.Format("No such page: {0}. Did you forget to call NavigationService.Configure?", pageKey), "pageKey");
 
@@ -105,6 +116,8 @@ namespace Famoser.FrameworkEssentials.UniversalWindows.Platform
 
         public void NavigateToAndForget(string pageKey)
         {
+            ExecuteOnce();
+
             if (!_pagesByKey.ContainsKey(pageKey))
                 throw new ArgumentException(string.Format("No such page: {0}. Did you forget to call NavigationService.Configure?", pageKey), "pageKey");
 
