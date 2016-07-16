@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.Storage;
 using Famoser.FrameworkEssentials.Logging.Interfaces;
 using Famoser.FrameworkEssentials.Services.Base;
 using Famoser.FrameworkEssentials.Services.Interfaces;
+using Famoser.FrameworkEssentials.UniversalWindows.Enums;
 
 namespace Famoser.FrameworkEssentials.UniversalWindows.Platform
 {
@@ -12,155 +14,118 @@ namespace Famoser.FrameworkEssentials.UniversalWindows.Platform
     {
         public StorageService(bool catchExceptions = true, IExceptionLogger logger = null) : base(catchExceptions, logger) { }
 
-        protected async Task<string> ReadAssetTextFileAsync(string path)
+        public Task<string> GetCachedTextFileAsync(string filePath)
         {
-            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///" + path));
-            if (file != null)
-                return await FileIO.ReadTextAsync(file);
-            return null;
+            return Execute(() => GetTextFileAsync(filePath, FolderType.CacheFolder));
         }
 
-        protected async Task<string> ReadLocalTextFileAsync(string filename)
+        public Task<bool> SetCachedTextFileAsync(string filePath, string content)
         {
-            StorageFile localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(filename);
-            if (localFile != null)
-                return await FileIO.ReadTextAsync(localFile);
-            return null;
+            return Execute(() => SaveTextFileAsync(filePath, content, FolderType.CacheFolder));
         }
 
-        protected async Task<string> ReadRoamingTextFileAsync(string filename)
+        public Task<byte[]> GetCachedFileAsync(string filePath)
         {
-            StorageFile localFile = await ApplicationData.Current.RoamingFolder.GetFileAsync(filename);
-            if (localFile != null)
-                return await FileIO.ReadTextAsync(localFile);
-            return null;
+            return Execute(() => GetFileAsync(filePath, FolderType.CacheFolder));
         }
 
-        protected async Task<bool> SaveLocalTextFileAsync(string filename, string content)
+        public Task<bool> SetCachedFileAsync(string filePath, byte[] content)
         {
-            StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
-            if (localFile != null)
-            {
-                await FileIO.WriteTextAsync(localFile, content);
-                return true;
-            }
-            return false;
+            return Execute(() => SaveFileAsync(filePath, content,FolderType.CacheFolder));
         }
 
-        protected async Task<bool> SaveRoamingTextFileAsync(string filename, string content)
+        public Task<bool> DeleteCachedFileAsync(string filePath)
         {
-            StorageFile localFile = await ApplicationData.Current.RoamingFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
-            if (localFile != null)
-            {
-                await FileIO.WriteTextAsync(localFile, content);
-                return true;
-            }
-            return false;
+            return Execute(() => DeleteFileAsync(filePath, FolderType.CacheFolder));
         }
 
-        protected async Task<byte[]> ReadAssetFileAsync(string path)
+        public Task<string> GetRoamingTextFileAsync(string filePath)
         {
-            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///" + path));
-            if (file != null)
-            {
-                var str = await FileIO.ReadBufferAsync(file);
-                return str.ToArray();
-            }
-            return null;
+            return Execute(() => GetTextFileAsync(filePath, FolderType.RoamingFolder));
         }
 
-        protected async Task<byte[]> ReadLocalFileAsync(string filename)
+        public Task<bool> SetRoamingTextFileAsync(string filePath, string content)
         {
-            StorageFile localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(filename);
-            if (localFile != null)
-            {
-                var str = await FileIO.ReadBufferAsync(localFile);
-                return str.ToArray();
-            }
-            return null;
+            return Execute(() => SaveTextFileAsync(filePath, content, FolderType.RoamingFolder));
         }
 
-        protected async Task<byte[]> ReadRoamingFileAsync(string filename)
+        public Task<byte[]> GetRoamingFileAsync(string filePath)
         {
-            StorageFile localFile = await ApplicationData.Current.RoamingFolder.GetFileAsync(filename);
-            if (localFile != null)
-            {
-                var res = await FileIO.ReadBufferAsync(localFile);
-                return res.ToArray();
-            }
-            return null;
+            return Execute(() => GetFileAsync(filePath, FolderType.RoamingFolder));
         }
 
-        protected async Task<bool> SaveLocalFileAsync(string filename, byte[] content)
+        public Task<bool> SetRoamingFileAsync(string filePath, byte[] content)
         {
-            StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
-            if (localFile != null)
-            {
-                await FileIO.WriteBytesAsync(localFile, content);
-                return true;
-            }
-            return false;
+            return Execute(() => SaveFileAsync(filePath, content, FolderType.RoamingFolder));
         }
 
-        protected async Task<bool> SaveRoamingFileAsync(string filename, byte[] content)
+        public Task<bool> DeleteRoamingFileAsync(string filePath)
         {
-            StorageFile localFile = await ApplicationData.Current.RoamingFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
-            if (localFile != null)
-            {
-                await FileIO.WriteBytesAsync(localFile, content);
-                return true;
-            }
-            return false;
-        }
-
-        public Task<string> GetCachedTextFileAsync(string fileKey)
-        {
-            return Execute(() => ReadLocalTextFileAsync(fileKey));
-        }
-
-        public Task<bool> SetCachedTextFileAsync(string fileKey, string content)
-        {
-            return Execute(() => SaveLocalTextFileAsync(fileKey, content));
-        }
-
-        public Task<byte[]> GetCachedFileAsync(string fileKey)
-        {
-            return Execute(() => ReadLocalFileAsync(fileKey));
-        }
-
-        public Task<bool> SetCachedFileAsync(string fileKey, byte[] content)
-        {
-            return Execute(() => SaveLocalFileAsync(fileKey, content));
-        }
-
-        public Task<string> GetUserTextFileAsync(string fileKey)
-        {
-            return Execute(() => ReadRoamingTextFileAsync(fileKey));
-        }
-
-        public Task<bool> SetUserTextFileAsync(string fileKey, string content)
-        {
-            return Execute(() => SaveRoamingTextFileAsync(fileKey, content));
-        }
-
-        public Task<byte[]> GetUserFileAsync(string fileKey)
-        {
-            return Execute(() => ReadRoamingFileAsync(fileKey));
-        }
-
-        public Task<bool> SetUserFileAsync(string fileKey, byte[] content)
-        {
-            return Execute(() => SaveRoamingFileAsync(fileKey, content));
+            return Execute(() => DeleteFileAsync(filePath, FolderType.RoamingFolder));
         }
 
         public Task<string> GetAssetTextFileAsync(string path)
         {
-            return Execute(() => ReadAssetTextFileAsync(path));
+            return Execute(() => GetTextFileAsync(path, FolderType.AssetFolder));
         }
 
         public Task<byte[]> GetAssetFileAsync(string path)
         {
-            return Execute(() => ReadAssetFileAsync(path));
+            return Execute(() => GetFileAsync(path, FolderType.AssetFolder));
+        }
+
+        protected StorageFolder GetFolder(FolderType folderType)
+        {
+            switch (folderType)
+            {
+                case FolderType.CacheFolder:
+                    return ApplicationData.Current.LocalCacheFolder;
+                case FolderType.RoamingFolder:
+                    return ApplicationData.Current.RoamingFolder;
+                default:
+                    return null;
+            }
+        }
+
+        private IAsyncOperation<StorageFile> GetStorageFileAsync(string filePath, FolderType folderType)
+        {
+            if (folderType == FolderType.AssetFolder)
+                return StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///" + filePath));
+            return GetFolder(folderType).GetFileAsync(filePath);
+        }
+
+        protected async Task<bool> DeleteFileAsync(string filePath, FolderType folderType)
+        {
+            StorageFile storageFile = await GetStorageFileAsync(filePath, folderType);
+            await storageFile.DeleteAsync(StorageDeleteOption.Default);
+            return true;
+        }
+
+        protected async Task<byte[]> GetFileAsync(string filePath, FolderType folderType)
+        {
+            StorageFile storageFile = await GetStorageFileAsync(filePath, folderType);
+            var str = await FileIO.ReadBufferAsync(storageFile);
+            return str.ToArray();
+        }
+
+        protected async Task<string> GetTextFileAsync(string filePath, FolderType folderType)
+        {
+            StorageFile storageFile = await GetStorageFileAsync(filePath, folderType);
+            return await FileIO.ReadTextAsync(storageFile);
+        }
+
+        protected async Task<bool> SaveFileAsync(string filePath, byte[] content, FolderType folderType)
+        {
+            StorageFile storageFile = await GetStorageFileAsync(filePath, folderType);
+            await FileIO.WriteBytesAsync(storageFile, content);
+            return true;
+        }
+
+        protected async Task<bool> SaveTextFileAsync(string filename, string content, FolderType folderType)
+        {
+            StorageFile storageFile = await GetStorageFileAsync(filename, folderType);
+            await FileIO.WriteTextAsync(storageFile, content);
+            return true;
         }
     }
 }
