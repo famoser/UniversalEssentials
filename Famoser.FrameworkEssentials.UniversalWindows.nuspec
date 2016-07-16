@@ -18,7 +18,7 @@ Currently, it contains:
 - ResolutionHelper</description>
         <releaseNotes>implemented new IStorageService and IFolderStorageService</releaseNotes>
 		<dependencies>
-			<dependency id="Famoser.FrameworkEssentials" version="2.7.0" />
+			<dependency id="Famoser.FrameworkEssentials" version="2.7.3" />
 		</dependencies>
     </metadata>
     <files>
