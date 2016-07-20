@@ -60,7 +60,7 @@ namespace Famoser.FrameworkEssentials.UniversalWindows.TestApp
             {
                 if (rootFrame.Content == null)
                 {
-                    StaticClass.NavigationService = new HistoryNavigationServices();
+                    StaticClass.NavigationService = new HistoryNavigationService();
                     StaticClass.NavigationService.Configure("main", typeof(MainPage));
                     StaticClass.NavigationService.Configure("page2", typeof(Page2));
                     StaticClass.NavigationService.Configure("page3", typeof(Page3));

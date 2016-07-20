@@ -1,49 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   IgnorableNamespaces="uap mp">
 
-  <Identity
-    Name="c38ca09f-217d-4d19-ba00-c3bafe3c6994"
-    Publisher="CN=Florian Moser"
-    Version="1.0.0.0" />
+  <Identity Name="1bc06b9c-5bd7-42e8-af46-62778cd8017c"
+            Publisher="CN=famoser"
+            Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="c38ca09f-217d-4d19-ba00-c3bafe3c6994" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="1bc06b9c-5bd7-42e8-af46-62778cd8017c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Famoser.FrameworkEssentials.UniversalWindows.TestAppWithPackage</DisplayName>
-    <PublisherDisplayName>Florian Moser</PublisherDisplayName>
+    <DisplayName>Famoser.FrameworkEssentials.UniversalWindows.UnitTests</DisplayName>
+    <PublisherDisplayName>famoser</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
-
+  
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
   </Dependencies>
 
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-      Executable="$targetnametoken$.exe"
-      EntryPoint="Famoser.FrameworkEssentials.UniversalWindows.TestAppWithPackage.App">
+    <Application Id="vstest.executionengine.universal.App" 
+        Executable="$targetnametoken$.exe"
+        EntryPoint="Famoser.FrameworkEssentials.UniversalWindows.UnitTests.App">
       <uap:VisualElements
-        DisplayName="Famoser.FrameworkEssentials.UniversalWindows.TestAppWithPackage"
+        DisplayName="Famoser.FrameworkEssentials.UniversalWindows.UnitTests"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="Famoser.FrameworkEssentials.UniversalWindows.TestAppWithPackage"
+        Description="Famoser.FrameworkEssentials.UniversalWindows.UnitTests"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
-
   <Capabilities>
     <Capability Name="internetClient" />
-  </Capabilities>
+  </Capabilities> 
 </Package>

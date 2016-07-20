@@ -4,6 +4,6 @@ namespace Famoser.FrameworkEssentials.UniversalWindows.TestApp
 {
     class StaticClass
     {
-        public static HistoryNavigationServices NavigationService { get; set; }
+        public static HistoryNavigationService NavigationService { get; set; }
     }
 }
