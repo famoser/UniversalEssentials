@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Famoser.FrameworkEssentials.UniversalWindows</id>
-        <version>1.2.0</version>
+        <version>1.2.1</version>
         <authors>Florian Moser</authors>
         <licenseUrl>http://github.com/famoser/UniversalEssentials/blob/master/LICENSE</licenseUrl>
         <projectUrl>http://github.com/famoser/UniversalEssentials</projectUrl>
@@ -16,7 +16,13 @@ Currently, it contains:
 - IFolderStorageService implementation
 - IHistoryNavigationService implementation
 - ResolutionHelper</description>
-        <releaseNotes>implemented new IStorageService and IFolderStorageService</releaseNotes>
+        <releaseNotes>1.2.1:
+bugfix IStorageService, unit tested!
+
+1.2.0:
+implemented new IStorageService and IFolderStorageService
+		
+		</releaseNotes>
 		<dependencies>
 			<dependency id="Famoser.FrameworkEssentials" version="2.7.3" />
 		</dependencies>

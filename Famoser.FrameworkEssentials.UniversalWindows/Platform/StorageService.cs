@@ -31,7 +31,7 @@ namespace Famoser.FrameworkEssentials.UniversalWindows.Platform
 
         public Task<bool> SetCachedFileAsync(string filePath, byte[] content)
         {
-            return Execute(() => SaveFileAsync(filePath, content,FolderType.CacheFolder));
+            return Execute(() => SaveFileAsync(filePath, content, FolderType.CacheFolder));
         }
 
         public Task<bool> DeleteCachedFileAsync(string filePath)
@@ -87,43 +87,48 @@ namespace Famoser.FrameworkEssentials.UniversalWindows.Platform
             }
         }
 
-        private IAsyncOperation<StorageFile> GetStorageFileAsync(string filePath, FolderType folderType)
+        private async Task<StorageFile> GetStorageFileAsync(string filePath, FolderType folderType)
         {
             if (folderType == FolderType.AssetFolder)
-                return StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///" + filePath));
-            return GetFolder(folderType).GetFileAsync(filePath);
+                return await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///" + filePath));
+            var file = await GetFolder(folderType).TryGetItemAsync(filePath);
+            if (file != null)
+                return await GetFolder(folderType).GetFileAsync(filePath);
+            return await GetFolder(folderType).CreateFileAsync(filePath);
         }
 
         protected async Task<bool> DeleteFileAsync(string filePath, FolderType folderType)
         {
-            StorageFile storageFile = await GetStorageFileAsync(filePath, folderType);
+            var storageFile = await GetStorageFileAsync(filePath, folderType);
             await storageFile.DeleteAsync(StorageDeleteOption.Default);
             return true;
         }
 
         protected async Task<byte[]> GetFileAsync(string filePath, FolderType folderType)
         {
-            StorageFile storageFile = await GetStorageFileAsync(filePath, folderType);
+            var storageFile = await GetStorageFileAsync(filePath, folderType);
             var str = await FileIO.ReadBufferAsync(storageFile);
-            return str.ToArray();
+            if (str.Length > 0)
+                return str.ToArray();
+            return new byte[0];
         }
 
         protected async Task<string> GetTextFileAsync(string filePath, FolderType folderType)
         {
-            StorageFile storageFile = await GetStorageFileAsync(filePath, folderType);
+            var storageFile = await GetStorageFileAsync(filePath, folderType);
             return await FileIO.ReadTextAsync(storageFile);
         }
 
         protected async Task<bool> SaveFileAsync(string filePath, byte[] content, FolderType folderType)
         {
-            StorageFile storageFile = await GetStorageFileAsync(filePath, folderType);
+            var storageFile = await GetStorageFileAsync(filePath, folderType);
             await FileIO.WriteBytesAsync(storageFile, content);
             return true;
         }
 
         protected async Task<bool> SaveTextFileAsync(string filename, string content, FolderType folderType)
         {
-            StorageFile storageFile = await GetStorageFileAsync(filename, folderType);
+            var storageFile = await GetStorageFileAsync(filename, folderType);
             await FileIO.WriteTextAsync(storageFile, content);
             return true;
         }
